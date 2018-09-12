@@ -1,0 +1,50 @@
+<script src="//unpkg.com/vue/dist/vue.js"></script>
+
+
+<div id="file-box">
+  <file-select></file-select>
+</div>
+
+<button onclick="upload()">
+aaa
+</button>
+
+<script>
+
+  Vue.component('file-select', {
+                  data: function(){
+                      return {
+                        file: undefind,
+                      }
+                  },
+                  methods:{
+                    handleFileChange(e){
+                      let inputElem = this.$refs.inputer;
+                      this.file = inputElem.files[0];
+                      console.log(this)
+                      console.log(this.file)
+                      let nameElem = this.$refs.fileName;
+                      nameElem.innerHTML = this.file ? this.file.name : '请选择文件'; 
+                    }
+                  },
+                  template: `
+                      <div>
+                        <input id="id" type="file" hidden @change="handleFileChange" ref="inputer">
+                        <button>
+                          <label for="id">hello</label>
+                        </button>
+                        <label ref="fileName">
+                          请选择文件
+                        </label>
+                      </div>
+                  `
+              })
+
+  var file_vue = new Vue({
+    el: "#file-box",
+  })
+  
+  function upload(){
+    console.log(file_vue.$children[0].file)
+  }
+</script>
