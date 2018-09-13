@@ -1,8 +1,8 @@
-<script src="//unpkg.com/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
 
 <div id="file-box">
-  <file-select></file-select>
+  <file-select ref="inputer"></file-select>
 </div>
 
 <button onclick="upload()">
@@ -29,9 +29,10 @@ aaa
                   },
                   template: `
                       <div>
-                        <input id="id" type="file" hidden @change="handleFileChange" ref="inputer">
+                        <!--好像有的地方要 class="hidden" ?? -->
+                        <input id="file-inputer" type="file" hidden @change="handleFileChange" ref="inputer">
                         <button>
-                          <label for="id">hello</label>
+                          <label for="file-inputer">hello</label>
                         </button>
                         <label ref="fileName">
                           请选择文件
@@ -45,6 +46,6 @@ aaa
   })
   
   function upload(){
-    console.log(file_vue.$children[0].file)
+    console.log(file_vue.$refs.inputer.file)
   }
 </script>
